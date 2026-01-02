@@ -1,0 +1,304 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ex: <http://example.org/> .
+@prefix heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#> .
+
+# -----------------------------------------------------------------------------
+# TRIBAL ELDERS
+# -----------------------------------------------------------------------------
+ex:s2025800000_elder_chief
+    a heritage:TribalElder ;
+    rdfs:label "Chief Thunder" ;
+    heritage:humanApproval true .
+
+ex:s2025800000_elder_wisdom
+    a heritage:TribalElder ;
+    rdfs:label "Elder Wisdom" ;
+    heritage:humanApproval true .
+
+ex:s2025800000_elder_council
+    a heritage:TribalElder ;
+    rdfs:label "Council Member" .
+
+# -----------------------------------------------------------------------------
+# GUARDIAN CANDIDATES 
+# -----------------------------------------------------------------------------
+
+# CASE 1: Automatic Classification + Violation (No Approval)
+ex:s2025800000_person_candidate1
+    a heritage:Person ;
+    rdfs:label "Candidate John (Unapproved)" ;
+    heritage:hasRole ex:s2025800000_role_g1 ;
+    heritage:caresFor ex:s2025800000_item_sacred_mask ;
+    heritage:humanApproval false .
+
+# CASE 2: Automatic Classification + Violation (No Approval)
+ex:s2025800000_person_candidate2
+    a heritage:Person ;
+    rdfs:label "Candidate Jane (Unapproved)" ;
+    heritage:hasRole ex:s2025800000_role_g2 ;
+    heritage:caresFor ex:s2025800000_item_sacred_totem ;
+    heritage:humanApproval false .
+
+# CASE 3: Automatic Classification + Violation (No Approval)
+ex:s2025800000_person_candidate3
+    a heritage:Person ;
+    rdfs:label "Candidate Jack (Unapproved)" ;
+    heritage:hasRole ex:s2025800000_role_g3 ;
+    heritage:caresFor ex:s2025800000_item_spirit_stone ;
+    heritage:humanApproval false .
+
+# CASE 4: Automatic Classification + Valid (Approved)
+ex:s2025800000_person_real_guardian4
+    a heritage:Person ;
+    rdfs:label "Guardian Maria (Approved)" ;
+    heritage:hasRole ex:s2025800000_role_g4 ;
+    heritage:caresFor ex:s2025800000_item_sacred_mask ;
+    heritage:humanApproval true ;
+    heritage:approvedBy ex:s2025800000_elder_chief .
+
+# CASE 5: Automatic Classification + Valid (Approved)
+ex:s2025800000_person_real_guardian5
+    a heritage:Person ;
+    rdfs:label "Guardian Tom (Approved)" ;
+    heritage:hasRole ex:s2025800000_role_g5 ;
+    heritage:caresFor ex:s2025800000_item_sacred_totem ;
+    heritage:humanApproval true ;
+    heritage:approvedBy ex:s2025800000_elder_wisdom .
+
+# -----------------------------------------------------------------------------
+# ROLES (Guardian Roles for the logic above)
+# -----------------------------------------------------------------------------
+ex:s2025800000_role_g1 a heritage:GuardianRole ; rdfs:label "Night Watch Role" .
+ex:s2025800000_role_g2 a heritage:GuardianRole ; rdfs:label "Gate Keeper Role" .
+ex:s2025800000_role_g3 a heritage:GuardianRole ; rdfs:label "Artifact Keeper Role" .
+ex:s2025800000_role_g4 a heritage:GuardianRole ; rdfs:label "High Guardian Role" .
+ex:s2025800000_role_g5 a heritage:GuardianRole ; rdfs:label "Temple Guard Role" .
+
+# -----------------------------------------------------------------------------
+# SACRED ITEMS (Triggers for classification)
+# -----------------------------------------------------------------------------
+ex:s2025800000_item_sacred_mask
+    a heritage:SacredItem ;
+    rdfs:label "Golden Mask of Sun" ;
+    heritage:requiredAccessLevel "Sacred" .
+
+ex:s2025800000_item_sacred_totem
+    a heritage:SacredItem ;
+    rdfs:label "Ancestral Totem" ;
+    heritage:requiredAccessLevel "Sacred" .
+
+ex:s2025800000_item_spirit_stone
+    a heritage:SacredItem ;
+    rdfs:label "Glowing Spirit Stone" ;
+    heritage:requiredAccessLevel "Sacred" .
+
+# -----------------------------------------------------------------------------
+# PERFORMERS & MUSICAL INSTRUMENTS (For Temporal Access Rules)
+# -----------------------------------------------------------------------------
+
+# Performers
+ex:s2025800000_person_musician1
+    a heritage:Performer ;
+    rdfs:label "Flute Player A" ;
+    heritage:performerAccessLevel "Public" .
+
+ex:s2025800000_person_musician2
+    a heritage:Performer ;
+    rdfs:label "Drum Master B" ;
+    heritage:performerAccessLevel "Restricted" .
+
+ex:s2025800000_person_musician3
+    a heritage:Performer ;
+    rdfs:label "Singer C" ;
+    heritage:performerAccessLevel "Sacred" .
+
+# Instruments
+ex:s2025800000_inst_flute
+    a heritage:MusicalInstrument ;
+    rdfs:label "Bone Flute" ;
+    heritage:restrictionEffectiveDate "1990-01-01"^^xsd:date ;
+    heritage:requiredAccessLevel "Public" .
+
+ex:s2025800000_inst_drum
+    a heritage:MusicalInstrument ;
+    rdfs:label "War Drum" ;
+    heritage:restrictionEffectiveDate "2000-01-01"^^xsd:date ;
+    heritage:requiredAccessLevel "Restricted" .
+
+ex:s2025800000_inst_harp
+    a heritage:MusicalInstrument ;
+    rdfs:label "Ceremonial Harp" ;
+    heritage:restrictionEffectiveDate "2024-01-01"^^xsd:date ;
+    heritage:requiredAccessLevel "Sacred" .
+
+# Performances (Linking performers to instruments)
+ex:s2025800000_event_concert1
+    a heritage:Performance ;
+    rdfs:label "Village Festival 1980" ;
+    heritage:recordingDate "1980-05-15"^^xsd:date ;
+    heritage:performedBy ex:s2025800000_person_musician1 .
+
+ex:s2025800000_event_ritual_dance
+    a heritage:Performance ;
+    rdfs:label "Secret Dance 2023" ;
+    heritage:recordingDate "2023-10-31"^^xsd:date ;
+    heritage:performedBy ex:s2025800000_person_musician3 .
+
+# -----------------------------------------------------------------------------
+# ARCHAEOLOGISTS & ARTIFACTS
+# -----------------------------------------------------------------------------
+ex:s2025800000_person_arch1
+    a heritage:Archaeologist ;
+    rdfs:label "Dr. Indiana" ;
+    heritage:hasRole ex:s2025800000_role_research1 .
+
+ex:s2025800000_role_research1 
+    a heritage:ResearcherRole ;
+    rdfs:label "Researcher" .
+
+ex:s2025800000_person_arch2
+    a heritage:Archaeologist ;
+    rdfs:label "Prof. Croft" .
+
+ex:s2025800000_artifact_pottery
+    a heritage:Artifact ;
+    rdfs:label "Clay Pot Fragment" .
+
+ex:s2025800000_artifact_coin
+    a heritage:Artifact ;
+    rdfs:label "Ancient Coin" .
+
+ex:s2025800000_item_restricted_scroll
+    a heritage:RestrictedItem ;
+    rdfs:label "Forbidden Scroll" ;
+    heritage:requiredAccessLevel "Restricted" .
+
+# -----------------------------------------------------------------------------
+# LOCATIONS & RITUALS
+# -----------------------------------------------------------------------------
+ex:s2025800000_loc_temple
+    a heritage:SacredSite ;
+    rdfs:label "Sun Temple" .
+
+ex:s2025800000_loc_cave
+    a heritage:SacredSite ;
+    rdfs:label "Echo Cave" .
+
+ex:s2025800000_loc_museum
+    a heritage:Location ;
+    rdfs:label "City Museum" .
+
+ex:s2025800000_ritual_morning
+    a heritage:Ritual ;
+    rdfs:label "Morning Prayer" ;
+    heritage:requiredAccessLevel "Public" .
+
+ex:s2025800000_ritual_solstice
+    a heritage:Ritual ;
+    rdfs:label "Winter Solstice Rite" ;
+    heritage:requiredAccessLevel "Sacred" .
+
+# --- Additional Elders (The Council) ---
+ex:s2025800000_elder_river
+    a heritage:TribalElder ;
+    rdfs:label "Elder River Watcher" ;
+    heritage:humanApproval true .
+
+ex:s2025800000_elder_mountain
+    a heritage:TribalElder ;
+    rdfs:label "Grandmother Mountain" ;
+    heritage:humanApproval true .
+
+# --- Cultural Preservation Team (Restorers & Researchers) ---
+ex:s2025800000_person_restorer1
+    a heritage:Person ;
+    rdfs:label "Restorer Sarah" ;
+    heritage:hasRole ex:s2025800000_role_preservation .
+
+ex:s2025800000_person_researcher_junior
+    a heritage:Person ;
+    rdfs:label "Junior Researcher Mike" ;
+    heritage:hasRole ex:s2025800000_role_research_assist .
+
+ex:s2025800000_role_preservation
+    a heritage:Role ;
+    rdfs:label "Artifact Preservation Role" .
+
+ex:s2025800000_role_research_assist
+    a heritage:ResearcherRole ;
+    rdfs:label "Assistant Researcher" .
+
+# --- Traditional Storytellers & Dancers ---
+ex:s2025800000_person_storyteller
+    a heritage:Performer ;
+    rdfs:label "Old Storyteller Kael" ;
+    heritage:performerAccessLevel "Public" .
+
+ex:s2025800000_person_dancer_lead
+    a heritage:Performer ;
+    rdfs:label "Lead Dancer Zara" ;
+    heritage:performerAccessLevel "Restricted" .
+
+# --- More Cultural Items (Tools, Garments, Weaponry) ---
+ex:s2025800000_item_ceremonial_spear
+    a heritage:CulturalItem ;
+    rdfs:label "Chieftain's Spear" ;
+    heritage:requiredAccessLevel "Restricted" .
+
+ex:s2025800000_item_wedding_robe
+    a heritage:CulturalItem ;
+    rdfs:label "Royal Wedding Robe" ;
+    heritage:requiredAccessLevel "Public" .
+
+ex:s2025800000_item_ancient_map
+    a heritage:Artifact ;
+    rdfs:label "Map of the Old World" .
+
+ex:s2025800000_item_clay_figurine
+    a heritage:Artifact ;
+    rdfs:label "Fertility Figurine" .
+
+# --- Seasonal Rituals (Events) ---
+ex:s2025800000_ritual_rain_dance
+    a heritage:Ritual ;
+    rdfs:label "Great Rain Dance" ;
+    heritage:requiredAccessLevel "Sacred" .
+
+ex:s2025800000_ritual_harvest_feast
+    a heritage:Ritual ;
+    rdfs:label "Annual Harvest Feast" ;
+    heritage:requiredAccessLevel "Public" .
+
+ex:s2025800000_ritual_initiation
+    a heritage:Ritual ;
+    rdfs:label "Warrior Initiation" ;
+    heritage:requiredAccessLevel "Restricted" .
+
+# --- Additional Performances (with dates for temporal queries) ---
+ex:s2025800000_event_story_night_1995
+    a heritage:Performance ;
+    rdfs:label "Tales of 1995" ;
+    heritage:recordingDate "1995-06-21"^^xsd:date ;
+    heritage:performedBy ex:s2025800000_person_storyteller .
+
+ex:s2025800000_event_dance_gala_2010
+    a heritage:Performance ;
+    rdfs:label "Winter Gala 2010" ;
+    heritage:recordingDate "2010-12-20"^^xsd:date ;
+    heritage:performedBy ex:s2025800000_person_dancer_lead .
+
+# --- Natural Sacred Locations ---
+ex:s2025800000_loc_waterfall
+    a heritage:SacredSite ;
+    rdfs:label "Whispering Waterfall" .
+
+ex:s2025800000_loc_ancient_tree
+    a heritage:SacredSite ;
+    rdfs:label "The First Tree" .
+
+ex:s2025800000_loc_burial_mound
+    a heritage:SacredSite ;
+    rdfs:label "Heroes' Mound" .
