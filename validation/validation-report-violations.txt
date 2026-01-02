@@ -1,0 +1,89 @@
+Validation Report
+Conforms: False
+Results (7):
+Constraint Violation in HasValueConstraintComponent (http://www.w3.org/ns/shacl#HasValueConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:hasValue Literal("true" = True, datatype=xsd:boolean) ; sh:message Literal("Spiritual Guardian requires human approval (humanApproval must be true).") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path heritage:humanApproval ; sh:severity sh:Violation ]
+	Focus Node: ex:s2025800000_person_candidate1
+	Result Path: heritage:humanApproval
+	Message: Spiritual Guardian requires human approval (humanApproval must be true).
+Constraint Violation in HasValueConstraintComponent (http://www.w3.org/ns/shacl#HasValueConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:hasValue Literal("true" = True, datatype=xsd:boolean) ; sh:message Literal("Spiritual Guardian requires human approval (humanApproval must be true).") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path heritage:humanApproval ; sh:severity sh:Violation ]
+	Focus Node: ex:s2025800000_person_candidate2
+	Result Path: heritage:humanApproval
+	Message: Spiritual Guardian requires human approval (humanApproval must be true).
+Constraint Violation in HasValueConstraintComponent (http://www.w3.org/ns/shacl#HasValueConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:hasValue Literal("true" = True, datatype=xsd:boolean) ; sh:message Literal("Spiritual Guardian requires human approval (humanApproval must be true).") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path heritage:humanApproval ; sh:severity sh:Violation ]
+	Focus Node: ex:s2025800000_person_candidate3
+	Result Path: heritage:humanApproval
+	Message: Spiritual Guardian requires human approval (humanApproval must be true).
+Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: ex:ElderApprovalShape
+	Focus Node: ex:s2025800000_elder_mountain
+	Value Node: ex:s2025800000_elder_mountain
+	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Individuals with humanApproval=true must be approved by a TribalElder.") ; sh:select Literal("
+            PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            SELECT $this
+            WHERE {
+                $this heritage:humanApproval true .
+                FILTER NOT EXISTS {
+                    $this heritage:approvedBy ?elder .
+                    ?elder a heritage:TribalElder .
+                }
+            }
+        ") ; sh:severity sh:Violation ]
+	Message: Individuals with humanApproval=true must be approved by a TribalElder.
+Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: ex:ElderApprovalShape
+	Focus Node: ex:s2025800000_elder_river
+	Value Node: ex:s2025800000_elder_river
+	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Individuals with humanApproval=true must be approved by a TribalElder.") ; sh:select Literal("
+            PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            SELECT $this
+            WHERE {
+                $this heritage:humanApproval true .
+                FILTER NOT EXISTS {
+                    $this heritage:approvedBy ?elder .
+                    ?elder a heritage:TribalElder .
+                }
+            }
+        ") ; sh:severity sh:Violation ]
+	Message: Individuals with humanApproval=true must be approved by a TribalElder.
+Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: ex:ElderApprovalShape
+	Focus Node: ex:s2025800000_elder_chief
+	Value Node: ex:s2025800000_elder_chief
+	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Individuals with humanApproval=true must be approved by a TribalElder.") ; sh:select Literal("
+            PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            SELECT $this
+            WHERE {
+                $this heritage:humanApproval true .
+                FILTER NOT EXISTS {
+                    $this heritage:approvedBy ?elder .
+                    ?elder a heritage:TribalElder .
+                }
+            }
+        ") ; sh:severity sh:Violation ]
+	Message: Individuals with humanApproval=true must be approved by a TribalElder.
+Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: ex:ElderApprovalShape
+	Focus Node: ex:s2025800000_elder_wisdom
+	Value Node: ex:s2025800000_elder_wisdom
+	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Individuals with humanApproval=true must be approved by a TribalElder.") ; sh:select Literal("
+            PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            SELECT $this
+            WHERE {
+                $this heritage:humanApproval true .
+                FILTER NOT EXISTS {
+                    $this heritage:approvedBy ?elder .
+                    ?elder a heritage:TribalElder .
+                }
+            }
+        ") ; sh:severity sh:Violation ]
+	Message: Individuals with humanApproval=true must be approved by a TribalElder.

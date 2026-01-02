@@ -1,0 +1,38 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.org/> .
+@prefix heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+
+ex:SpiritualGuardianApprovalShape
+    a sh:NodeShape ;
+    sh:targetClass heritage:SpiritualGuardian ;
+    sh:property [
+        sh:path heritage:humanApproval ;
+        sh:hasValue true ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "Spiritual Guardian requires human approval (humanApproval must be true)." ;
+    ] .
+
+
+ex:ElderApprovalShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf heritage:humanApproval ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Individuals with humanApproval=true must be approved by a TribalElder." ;
+        sh:severity sh:Violation ;
+        sh:select """
+            PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            SELECT $this
+            WHERE {
+                $this heritage:humanApproval true .
+                FILTER NOT EXISTS {
+                    $this heritage:approvedBy ?elder .
+                    ?elder a heritage:TribalElder .
+                }
+            }
+        """
+    ] .
