@@ -1,0 +1,114 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.org/> .
+@prefix heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#> .
+
+# Claim 1: Tribe A - Harvest Feast (Lunar)
+<http://example.org/s2025800000_claim/tribeA/001> {
+    ex:s2025800000_ritual_harvest_feast ex:belongsTo ex:LunarCycle .
+}
+<http://example.org/s2025800000_claim/tribeA/001_metadata> {
+    <http://example.org/s2025800000_claim/tribeA/001>
+        ex:source ex:TribeA ;
+        ex:confidence 0.9 ;
+        ex:dateRecorded "2024-03-15"^^xsd:date .
+}
+
+# Claim 2: Tribe B - Harvest Feast (Solar)
+<http://example.org/s2025800000_claim/tribeB/002> {
+    ex:s2025800000_ritual_harvest_feast ex:belongsTo ex:SolarCycle .
+}
+<http://example.org/s2025800000_claim/tribeB/002_metadata> {
+    <http://example.org/s2025800000_claim/tribeB/002>
+        ex:source ex:TribeB ;
+        ex:confidence 0.85 ;
+        ex:dateRecorded "2024-03-16"^^xsd:date .
+}
+
+# Claim 3: Tribe A - Rain Dance (Lunar)
+<http://example.org/s2025800000_claim/tribeA/003> {
+    ex:s2025800000_ritual_rain_dance ex:belongsTo ex:LunarCycle .
+}
+<http://example.org/s2025800000_claim/tribeA/003_metadata> {
+    <http://example.org/s2025800000_claim/tribeA/003>
+        ex:source ex:TribeA ;
+        ex:confidence 0.95 ;
+        ex:dateRecorded "2024-04-01"^^xsd:date .
+}
+
+# Claim 4: Tribe B - Rain Dance (Solar)
+<http://example.org/s2025800000_claim/tribeB/004> {
+    ex:s2025800000_ritual_rain_dance ex:belongsTo ex:SolarCycle .
+}
+<http://example.org/s2025800000_claim/tribeB/004_metadata> {
+    <http://example.org/s2025800000_claim/tribeB/004>
+        ex:source ex:TribeB ;
+        ex:confidence 0.6 ;
+        ex:dateRecorded "2024-04-02"^^xsd:date .
+}
+
+# Claim 5: Elder Wisdom - Initiation (Solar)
+<http://example.org/s2025800000_claim/elder/005> {
+    ex:s2025800000_ritual_initiation ex:belongsTo ex:SolarCycle .
+}
+<http://example.org/s2025800000_claim/elder/005_metadata> {
+    <http://example.org/s2025800000_claim/elder/005>
+        ex:source ex:s2025800000_elder_wisdom ;
+        ex:confidence 1.0 ;
+        ex:dateRecorded "2024-01-10"^^xsd:date .
+}
+
+# Claim 6: Archaeologist - Initiation (Lunar)
+<http://example.org/s2025800000_claim/researcher/006> {
+    ex:s2025800000_ritual_initiation ex:belongsTo ex:LunarCycle .
+}
+<http://example.org/s2025800000_claim/researcher/006_metadata> {
+    <http://example.org/s2025800000_claim/researcher/006>
+        ex:source ex:s2025800000_person_arch1 ;
+        ex:confidence 0.7 ;
+        ex:dateRecorded "2024-01-12"^^xsd:date .
+}
+
+# Claim 7: Tribe A - Morning Prayer (Solar)
+<http://example.org/s2025800000_claim/tribeA/007> {
+    ex:s2025800000_ritual_morning ex:belongsTo ex:SolarCycle .
+}
+<http://example.org/s2025800000_claim/tribeA/007_metadata> {
+    <http://example.org/s2025800000_claim/tribeA/007>
+        ex:source ex:TribeA ;
+        ex:confidence 0.8 ;
+        ex:dateRecorded "2024-05-20"^^xsd:date .
+}
+
+# Claim 8: Tribe B - Morning Prayer (Solar)
+<http://example.org/s2025800000_claim/tribeB/008> {
+    ex:s2025800000_ritual_morning ex:belongsTo ex:SolarCycle .
+}
+<http://example.org/s2025800000_claim/tribeB/008_metadata> {
+    <http://example.org/s2025800000_claim/tribeB/008>
+        ex:source ex:TribeB ;
+        ex:confidence 0.8 ;
+        ex:dateRecorded "2024-05-21"^^xsd:date .
+}
+
+# Claim 9: Tribe A - Sacred Mask (Ancestors)
+<http://example.org/s2025800000_claim/tribeA/009> {
+    ex:s2025800000_item_sacred_mask ex:belongsTo ex:Ancestors .
+}
+<http://example.org/s2025800000_claim/tribeA/009_metadata> {
+    <http://example.org/s2025800000_claim/tribeA/009>
+        ex:source ex:TribeA ;
+        ex:confidence 0.99 ;
+        ex:dateRecorded "2023-11-11"^^xsd:date .
+}
+
+# Claim 10: Researcher - Sacred Mask (Museum)
+<http://example.org/s2025800000_claim/researcher/010> {
+    ex:s2025800000_item_sacred_mask ex:belongsTo ex:s2025800000_loc_museum .
+}
+<http://example.org/s2025800000_claim/researcher/010_metadata> {
+    <http://example.org/s2025800000_claim/researcher/010>
+        ex:source ex:s2025800000_person_researcher_junior ;
+        ex:confidence 0.5 ;
+        ex:dateRecorded "2023-11-12"^^xsd:date .
+}

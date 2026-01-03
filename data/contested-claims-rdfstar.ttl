@@ -1,0 +1,65 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.org/> .
+@prefix heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#> .
+
+
+# Claim 1
+<< ex:s2025800000_ritual_harvest_feast ex:belongsTo ex:LunarCycle >>
+    ex:source ex:TribeA ;
+    ex:confidence 0.9 ;
+    ex:dateRecorded "2024-03-15"^^xsd:date .
+
+# Claim 2 (Conflict with 1)
+<< ex:s2025800000_ritual_harvest_feast ex:belongsTo ex:SolarCycle >>
+    ex:source ex:TribeB ;
+    ex:confidence 0.85 ;
+    ex:dateRecorded "2024-03-16"^^xsd:date .
+
+# Claim 3
+<< ex:s2025800000_ritual_rain_dance ex:belongsTo ex:LunarCycle >>
+    ex:source ex:TribeA ;
+    ex:confidence 0.95 ;
+    ex:dateRecorded "2024-04-01"^^xsd:date .
+
+# Claim 4 (Conflict with 3)
+<< ex:s2025800000_ritual_rain_dance ex:belongsTo ex:SolarCycle >>
+    ex:source ex:TribeB ;
+    ex:confidence 0.6 ;
+    ex:dateRecorded "2024-04-02"^^xsd:date .
+
+# Claim 5
+<< ex:s2025800000_ritual_initiation ex:belongsTo ex:SolarCycle >>
+    ex:source ex:s2025800000_elder_wisdom ;
+    ex:confidence 1.0 ;
+    ex:dateRecorded "2024-01-10"^^xsd:date .
+
+# Claim 6 (Conflict with 5)
+<< ex:s2025800000_ritual_initiation ex:belongsTo ex:LunarCycle >>
+    ex:source ex:s2025800000_person_arch1 ;
+    ex:confidence 0.7 ;
+    ex:dateRecorded "2024-01-12"^^xsd:date .
+
+# Claim 7
+<< ex:s2025800000_ritual_morning ex:belongsTo ex:SolarCycle >>
+    ex:source ex:TribeA ;
+    ex:confidence 0.8 ;
+    ex:dateRecorded "2024-05-20"^^xsd:date .
+
+# Claim 8 (Agreement with 7)
+<< ex:s2025800000_ritual_morning ex:belongsTo ex:SolarCycle >>
+    ex:source ex:TribeB ;
+    ex:confidence 0.8 ;
+    ex:dateRecorded "2024-05-21"^^xsd:date .
+
+# Claim 9
+<< ex:s2025800000_item_sacred_mask ex:belongsTo ex:Ancestors >>
+    ex:source ex:TribeA ;
+    ex:confidence 0.99 ;
+    ex:dateRecorded "2023-11-11"^^xsd:date .
+
+# Claim 10
+<< ex:s2025800000_item_sacred_mask ex:belongsTo ex:s2025800000_loc_museum >>
+    ex:source ex:s2025800000_person_researcher_junior ;
+    ex:confidence 0.5 ;
+    ex:dateRecorded "2023-11-12"^^xsd:date .

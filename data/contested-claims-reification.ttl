@@ -1,0 +1,94 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.org/> .
+@prefix heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#> .
+
+# Claim 1: Tribe A claims Harvest Feast belongs to Lunar Cycle
+ex:s2025800000_claim001 a rdf:Statement ;
+    rdf:subject ex:s2025800000_ritual_harvest_feast ;
+    rdf:predicate ex:belongsTo ;
+    rdf:object ex:LunarCycle ;
+    ex:source ex:TribeA ;
+    ex:confidence 0.9 ;
+    ex:dateRecorded "2024-03-15"^^xsd:date .
+
+# Claim 2: Tribe B claims Harvest Feast belongs to Solar Cycle (CONFLICT)
+ex:s2025800000_claim002 a rdf:Statement ;
+    rdf:subject ex:s2025800000_ritual_harvest_feast ;
+    rdf:predicate ex:belongsTo ;
+    rdf:object ex:SolarCycle ;
+    ex:source ex:TribeB ;
+    ex:confidence 0.85 ;
+    ex:dateRecorded "2024-03-16"^^xsd:date .
+
+# Claim 3: Tribe A claims Rain Dance is Lunar
+ex:s2025800000_claim003 a rdf:Statement ;
+    rdf:subject ex:s2025800000_ritual_rain_dance ;
+    rdf:predicate ex:belongsTo ;
+    rdf:object ex:LunarCycle ;
+    ex:source ex:TribeA ;
+    ex:confidence 0.95 ;
+    ex:dateRecorded "2024-04-01"^^xsd:date .
+
+# Claim 4: Tribe B claims Rain Dance is Solar (CONFLICT)
+ex:s2025800000_claim004 a rdf:Statement ;
+    rdf:subject ex:s2025800000_ritual_rain_dance ;
+    rdf:predicate ex:belongsTo ;
+    rdf:object ex:SolarCycle ;
+    ex:source ex:TribeB ;
+    ex:confidence 0.6 ;
+    ex:dateRecorded "2024-04-02"^^xsd:date .
+
+# Claim 5: Elder Wisdom claims Initiation is Solar
+ex:s2025800000_claim005 a rdf:Statement ;
+    rdf:subject ex:s2025800000_ritual_initiation ;
+    rdf:predicate ex:belongsTo ;
+    rdf:object ex:SolarCycle ;
+    ex:source ex:s2025800000_elder_wisdom ;
+    ex:confidence 1.0 ;
+    ex:dateRecorded "2024-01-10"^^xsd:date .
+
+# Claim 6: Archaeologist claims Initiation is Lunar (CONFLICT)
+ex:s2025800000_claim006 a rdf:Statement ;
+    rdf:subject ex:s2025800000_ritual_initiation ;
+    rdf:predicate ex:belongsTo ;
+    rdf:object ex:LunarCycle ;
+    ex:source ex:s2025800000_person_arch1 ;
+    ex:confidence 0.7 ;
+    ex:dateRecorded "2024-01-12"^^xsd:date .
+
+# Claim 7: Tribe A claims Morning Prayer is Solar
+ex:s2025800000_claim007 a rdf:Statement ;
+    rdf:subject ex:s2025800000_ritual_morning ;
+    rdf:predicate ex:belongsTo ;
+    rdf:object ex:SolarCycle ;
+    ex:source ex:TribeA ;
+    ex:confidence 0.8 ;
+    ex:dateRecorded "2024-05-20"^^xsd:date .
+
+# Claim 8: Tribe B claims Morning Prayer is Solar (AGREEMENT)
+ex:s2025800000_claim008 a rdf:Statement ;
+    rdf:subject ex:s2025800000_ritual_morning ;
+    rdf:predicate ex:belongsTo ;
+    rdf:object ex:SolarCycle ;
+    ex:source ex:TribeB ;
+    ex:confidence 0.8 ;
+    ex:dateRecorded "2024-05-21"^^xsd:date .
+
+# Claim 9: Tribe A claims Sacred Mask belongs to Ancestors (Custom Object)
+ex:s2025800000_claim009 a rdf:Statement ;
+    rdf:subject ex:s2025800000_item_sacred_mask ;
+    rdf:predicate ex:belongsTo ;
+    rdf:object ex:Ancestors ;
+    ex:source ex:TribeA ;
+    ex:confidence 0.99 ;
+    ex:dateRecorded "2023-11-11"^^xsd:date .
+
+# Claim 10: Researcher claims Sacred Mask belongs to Museum
+ex:s2025800000_claim010 a rdf:Statement ;
+    rdf:subject ex:s2025800000_item_sacred_mask ;
+    rdf:predicate ex:belongsTo ;
+    rdf:object ex:s2025800000_loc_museum ;
+    ex:source ex:s2025800000_person_researcher_junior ;
+    ex:confidence 0.5 ;
+    ex:dateRecorded "2023-11-12"^^xsd:date .
