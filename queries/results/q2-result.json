@@ -1,0 +1,191 @@
+{
+  "head": {
+    "vars": [
+      "ritual",
+      "cycle1",
+      "cycle2",
+      "graph1",
+      "graph2"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_harvest_feast"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "graph1": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/tribeA/001"
+        },
+        "graph2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/tribeB/002"
+        }
+      },
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_harvest_feast"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "graph1": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/tribeB/002"
+        },
+        "graph2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/tribeA/001"
+        }
+      },
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_rain_dance"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "graph1": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/tribeA/003"
+        },
+        "graph2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/tribeB/004"
+        }
+      },
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_rain_dance"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "graph1": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/tribeB/004"
+        },
+        "graph2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/tribeA/003"
+        }
+      },
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_initiation"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "graph1": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/researcher/006"
+        },
+        "graph2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/elder/005"
+        }
+      },
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_initiation"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "graph1": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/elder/005"
+        },
+        "graph2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/researcher/006"
+        }
+      },
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_item_sacred_mask"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/Ancestors"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_loc_museum"
+        },
+        "graph1": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/tribeA/009"
+        },
+        "graph2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/researcher/010"
+        }
+      },
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_item_sacred_mask"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_loc_museum"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/Ancestors"
+        },
+        "graph1": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/researcher/010"
+        },
+        "graph2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_claim/tribeA/009"
+        }
+      }
+    ]
+  }
+}

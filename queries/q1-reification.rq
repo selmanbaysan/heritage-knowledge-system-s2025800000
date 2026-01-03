@@ -1,0 +1,13 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX ex: <http://example.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?subject ?predicate ?object ?confidence
+WHERE {
+    ?statement a rdf:Statement ;
+               rdf:subject ?subject ;
+               rdf:predicate ?predicate ;
+               rdf:object ?object ;
+               ex:confidence ?confidence .
+    FILTER (?confidence > 0.8)
+}

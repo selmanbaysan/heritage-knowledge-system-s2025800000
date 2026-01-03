@@ -1,0 +1,7 @@
+PREFIX ex: <http://example.org/>
+
+SELECT ?source (COUNT(*) AS ?claimCount)
+WHERE {
+    << ?s ?p ?o >> ex:source ?source .
+}
+GROUP BY ?source

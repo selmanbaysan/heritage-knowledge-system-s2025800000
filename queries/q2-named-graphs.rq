@@ -1,0 +1,16 @@
+PREFIX ex: <http://example.org/>
+
+SELECT ?ritual ?cycle1 ?cycle2 ?graph1 ?graph2
+WHERE {
+    GRAPH ?graph1 {
+        ?ritual ex:belongsTo ?cycle1 .
+    }
+    
+    GRAPH ?graph2 {
+        ?ritual ex:belongsTo ?cycle2 .
+    }
+    
+    FILTER (?cycle1 != ?cycle2)
+    FILTER (!CONTAINS(STR(?graph1), "metadata"))
+    FILTER (!CONTAINS(STR(?graph2), "metadata"))
+}

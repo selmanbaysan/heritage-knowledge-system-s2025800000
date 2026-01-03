@@ -1,0 +1,67 @@
+{
+  "head": {
+    "vars": [
+      "source",
+      "claimCount"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {
+        "source": {
+          "type": "uri",
+          "value": "http://example.org/TribeA"
+        },
+        "claimCount": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "type": "literal",
+          "value": "4"
+        }
+      },
+      {
+        "source": {
+          "type": "uri",
+          "value": "http://example.org/TribeB"
+        },
+        "claimCount": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "type": "literal",
+          "value": "3"
+        }
+      },
+      {
+        "source": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_person_arch1"
+        },
+        "claimCount": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "type": "literal",
+          "value": "1"
+        }
+      },
+      {
+        "source": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_elder_wisdom"
+        },
+        "claimCount": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "type": "literal",
+          "value": "1"
+        }
+      },
+      {
+        "source": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_person_researcher_junior"
+        },
+        "claimCount": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "type": "literal",
+          "value": "1"
+        }
+      }
+    ]
+  }
+}
