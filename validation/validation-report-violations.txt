@@ -1,89 +1,155 @@
 Validation Report
 Conforms: False
-Results (7):
-Constraint Violation in HasValueConstraintComponent (http://www.w3.org/ns/shacl#HasValueConstraintComponent):
+Results (10):
+Constraint Violation in DatatypeConstraintComponent (http://www.w3.org/ns/shacl#DatatypeConstraintComponent):
 	Severity: sh:Violation
-	Source Shape: [ sh:hasValue Literal("true" = True, datatype=xsd:boolean) ; sh:message Literal("Spiritual Guardian requires human approval (humanApproval must be true).") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path heritage:humanApproval ; sh:severity sh:Violation ]
-	Focus Node: ex:s2025800000_person_candidate1
-	Result Path: heritage:humanApproval
-	Message: Spiritual Guardian requires human approval (humanApproval must be true).
-Constraint Violation in HasValueConstraintComponent (http://www.w3.org/ns/shacl#HasValueConstraintComponent):
+	Source Shape: [ sh:datatype xsd:date ; sh:message Literal("Invalid recordingDate format (must be xsd:date).") ; sh:path heritage:recordingDate ; sh:severity sh:Violation ]
+	Focus Node: ex:s2025800000_recording_bad_date2
+	Value Node: Literal("Yesterday")
+	Result Path: heritage:recordingDate
+	Message: Invalid recordingDate format (must be xsd:date).
+Constraint Violation in DatatypeConstraintComponent (http://www.w3.org/ns/shacl#DatatypeConstraintComponent):
 	Severity: sh:Violation
-	Source Shape: [ sh:hasValue Literal("true" = True, datatype=xsd:boolean) ; sh:message Literal("Spiritual Guardian requires human approval (humanApproval must be true).") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path heritage:humanApproval ; sh:severity sh:Violation ]
-	Focus Node: ex:s2025800000_person_candidate2
-	Result Path: heritage:humanApproval
-	Message: Spiritual Guardian requires human approval (humanApproval must be true).
-Constraint Violation in HasValueConstraintComponent (http://www.w3.org/ns/shacl#HasValueConstraintComponent):
-	Severity: sh:Violation
-	Source Shape: [ sh:hasValue Literal("true" = True, datatype=xsd:boolean) ; sh:message Literal("Spiritual Guardian requires human approval (humanApproval must be true).") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path heritage:humanApproval ; sh:severity sh:Violation ]
-	Focus Node: ex:s2025800000_person_candidate3
-	Result Path: heritage:humanApproval
-	Message: Spiritual Guardian requires human approval (humanApproval must be true).
+	Source Shape: [ sh:datatype xsd:date ; sh:message Literal("Invalid recordingDate format (must be xsd:date).") ; sh:path heritage:recordingDate ; sh:severity sh:Violation ]
+	Focus Node: ex:s2025800000_recording_bad_date1
+	Value Node: Literal("2024-May-01")
+	Result Path: heritage:recordingDate
+	Message: Invalid recordingDate format (must be xsd:date).
+Validation Result in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Warning
+	Source Shape: [ sh:message Literal("Recording missing performer information.") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path heritage:hasPerformer ; sh:severity sh:Warning ]
+	Focus Node: ex:s2025800000_recording_missing3
+	Result Path: heritage:hasPerformer
+	Message: Recording missing performer information.
+Validation Result in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Warning
+	Source Shape: [ sh:message Literal("Recording missing performer information.") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path heritage:hasPerformer ; sh:severity sh:Warning ]
+	Focus Node: ex:s2025800000_recording_missing1
+	Result Path: heritage:hasPerformer
+	Message: Recording missing performer information.
+Validation Result in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Warning
+	Source Shape: [ sh:message Literal("Recording missing performer information.") ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:path heritage:hasPerformer ; sh:severity sh:Warning ]
+	Focus Node: ex:s2025800000_recording_missing2
+	Result Path: heritage:hasPerformer
+	Message: Recording missing performer information.
 Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):
 	Severity: sh:Violation
-	Source Shape: ex:ElderApprovalShape
-	Focus Node: ex:s2025800000_elder_mountain
-	Value Node: ex:s2025800000_elder_mountain
-	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Individuals with humanApproval=true must be approved by a TribalElder.") ; sh:select Literal("
+	Source Shape: ex:TemporalAccessShape
+	Focus Node: ex:s2025800000_recording_violation3
+	Value Node: ex:s2025800000_recording_violation3
+	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Recording made after restriction without proper authorization (Performer Level too low).") ; sh:select Literal("
             PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            
             SELECT $this
             WHERE {
-                $this heritage:humanApproval true .
-                FILTER NOT EXISTS {
-                    $this heritage:approvedBy ?elder .
-                    ?elder a heritage:TribalElder .
-                }
+                $this heritage:recordingDate ?recDate .
+                $this heritage:hasPerformer ?performer .
+                ?performer heritage:performerAccessLevel ?perfLevel .
+                $this heritage:relatedInstrument ?instrument .
+                ?instrument heritage:restrictionEffectiveDate ?restrDate .
+                ?instrument heritage:requiredAccessLevel ?reqLevel .
+
+                FILTER (?recDate > ?restrDate)
+
+                FILTER (str(?perfLevel) < str(?reqLevel))
             }
         ") ; sh:severity sh:Violation ]
-	Message: Individuals with humanApproval=true must be approved by a TribalElder.
+	Message: Recording made after restriction without proper authorization (Performer Level too low).
 Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):
 	Severity: sh:Violation
-	Source Shape: ex:ElderApprovalShape
-	Focus Node: ex:s2025800000_elder_river
-	Value Node: ex:s2025800000_elder_river
-	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Individuals with humanApproval=true must be approved by a TribalElder.") ; sh:select Literal("
+	Source Shape: ex:TemporalAccessShape
+	Focus Node: ex:s2025800000_recording_violation4
+	Value Node: ex:s2025800000_recording_violation4
+	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Recording made after restriction without proper authorization (Performer Level too low).") ; sh:select Literal("
             PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            
             SELECT $this
             WHERE {
-                $this heritage:humanApproval true .
-                FILTER NOT EXISTS {
-                    $this heritage:approvedBy ?elder .
-                    ?elder a heritage:TribalElder .
-                }
+                $this heritage:recordingDate ?recDate .
+                $this heritage:hasPerformer ?performer .
+                ?performer heritage:performerAccessLevel ?perfLevel .
+                $this heritage:relatedInstrument ?instrument .
+                ?instrument heritage:restrictionEffectiveDate ?restrDate .
+                ?instrument heritage:requiredAccessLevel ?reqLevel .
+
+                FILTER (?recDate > ?restrDate)
+
+                FILTER (str(?perfLevel) < str(?reqLevel))
             }
         ") ; sh:severity sh:Violation ]
-	Message: Individuals with humanApproval=true must be approved by a TribalElder.
+	Message: Recording made after restriction without proper authorization (Performer Level too low).
 Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):
 	Severity: sh:Violation
-	Source Shape: ex:ElderApprovalShape
-	Focus Node: ex:s2025800000_elder_chief
-	Value Node: ex:s2025800000_elder_chief
-	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Individuals with humanApproval=true must be approved by a TribalElder.") ; sh:select Literal("
+	Source Shape: ex:TemporalAccessShape
+	Focus Node: ex:s2025800000_recording_violation5
+	Value Node: ex:s2025800000_recording_violation5
+	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Recording made after restriction without proper authorization (Performer Level too low).") ; sh:select Literal("
             PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            
             SELECT $this
             WHERE {
-                $this heritage:humanApproval true .
-                FILTER NOT EXISTS {
-                    $this heritage:approvedBy ?elder .
-                    ?elder a heritage:TribalElder .
-                }
+                $this heritage:recordingDate ?recDate .
+                $this heritage:hasPerformer ?performer .
+                ?performer heritage:performerAccessLevel ?perfLevel .
+                $this heritage:relatedInstrument ?instrument .
+                ?instrument heritage:restrictionEffectiveDate ?restrDate .
+                ?instrument heritage:requiredAccessLevel ?reqLevel .
+
+                FILTER (?recDate > ?restrDate)
+
+                FILTER (str(?perfLevel) < str(?reqLevel))
             }
         ") ; sh:severity sh:Violation ]
-	Message: Individuals with humanApproval=true must be approved by a TribalElder.
+	Message: Recording made after restriction without proper authorization (Performer Level too low).
 Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):
 	Severity: sh:Violation
-	Source Shape: ex:ElderApprovalShape
-	Focus Node: ex:s2025800000_elder_wisdom
-	Value Node: ex:s2025800000_elder_wisdom
-	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Individuals with humanApproval=true must be approved by a TribalElder.") ; sh:select Literal("
+	Source Shape: ex:TemporalAccessShape
+	Focus Node: ex:s2025800000_recording_violation2
+	Value Node: ex:s2025800000_recording_violation2
+	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Recording made after restriction without proper authorization (Performer Level too low).") ; sh:select Literal("
             PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            
             SELECT $this
             WHERE {
-                $this heritage:humanApproval true .
-                FILTER NOT EXISTS {
-                    $this heritage:approvedBy ?elder .
-                    ?elder a heritage:TribalElder .
-                }
+                $this heritage:recordingDate ?recDate .
+                $this heritage:hasPerformer ?performer .
+                ?performer heritage:performerAccessLevel ?perfLevel .
+                $this heritage:relatedInstrument ?instrument .
+                ?instrument heritage:restrictionEffectiveDate ?restrDate .
+                ?instrument heritage:requiredAccessLevel ?reqLevel .
+
+                FILTER (?recDate > ?restrDate)
+
+                FILTER (str(?perfLevel) < str(?reqLevel))
             }
         ") ; sh:severity sh:Violation ]
-	Message: Individuals with humanApproval=true must be approved by a TribalElder.
+	Message: Recording made after restriction without proper authorization (Performer Level too low).
+Constraint Violation in SPARQLConstraintComponent (http://www.w3.org/ns/shacl#SPARQLConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: ex:TemporalAccessShape
+	Focus Node: ex:s2025800000_recording_violation1
+	Value Node: ex:s2025800000_recording_violation1
+	Source Constraint: [ rdf:type sh:SPARQLConstraint ; sh:message Literal("Recording made after restriction without proper authorization (Performer Level too low).") ; sh:select Literal("
+            PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            
+            SELECT $this
+            WHERE {
+                $this heritage:recordingDate ?recDate .
+                $this heritage:hasPerformer ?performer .
+                ?performer heritage:performerAccessLevel ?perfLevel .
+                $this heritage:relatedInstrument ?instrument .
+                ?instrument heritage:restrictionEffectiveDate ?restrDate .
+                ?instrument heritage:requiredAccessLevel ?reqLevel .
+
+                FILTER (?recDate > ?restrDate)
+
+                FILTER (str(?perfLevel) < str(?reqLevel))
+            }
+        ") ; sh:severity sh:Violation ]
+	Message: Recording made after restriction without proper authorization (Performer Level too low).

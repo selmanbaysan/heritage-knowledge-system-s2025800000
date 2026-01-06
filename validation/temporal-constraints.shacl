@@ -36,3 +36,57 @@ ex:ElderApprovalShape
             }
         """
     ] .
+
+ex:TemporalAccessShape
+    a sh:NodeShape ;
+    sh:targetClass heritage:Recording ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Recording made after restriction without proper authorization (Performer Level too low)." ;
+        sh:severity sh:Violation ;
+        sh:select """
+            PREFIX heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            
+            SELECT $this
+            WHERE {
+                $this heritage:recordingDate ?recDate .
+                $this heritage:hasPerformer ?performer .
+                ?performer heritage:performerAccessLevel ?perfLevel .
+                $this heritage:relatedInstrument ?instrument .
+                ?instrument heritage:restrictionEffectiveDate ?restrDate .
+                ?instrument heritage:requiredAccessLevel ?reqLevel .
+
+                FILTER (?recDate > ?restrDate)
+
+                FILTER (str(?perfLevel) < str(?reqLevel))
+            }
+        """
+    ] .
+
+ex:PerformerCheckShape
+    a sh:NodeShape ;
+    sh:targetClass heritage:Recording ;
+    sh:property [
+        sh:path heritage:hasPerformer ;
+        sh:minCount 1 ;
+        sh:message "Recording missing performer information." ;
+        sh:severity sh:Warning ;
+    ] .
+
+ex:DateFormatShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf heritage:recordingDate, heritage:restrictionEffectiveDate ;
+    
+    sh:property [
+        sh:path heritage:recordingDate ;
+        sh:datatype xsd:date ;
+        sh:message "Invalid recordingDate format (must be xsd:date)." ;
+        sh:severity sh:Violation ;
+    ] ;
+    sh:property [
+        sh:path heritage:restrictionEffectiveDate ;
+        sh:datatype xsd:date ;
+        sh:message "Invalid restrictionEffectiveDate format (must be xsd:date)." ;
+        sh:severity sh:Violation ;
+    ] .

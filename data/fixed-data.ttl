@@ -1,0 +1,86 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.org/> .
+@prefix heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#> .
+
+# -----------------------------------------------------------------------------
+# SETUP: Performers & Instruments (Context Data)
+# -----------------------------------------------------------------------------
+ex:s2025800000_perf_public a heritage:Performer ; heritage:performerAccessLevel "Public" .
+ex:s2025800000_perf_restricted a heritage:Performer ; heritage:performerAccessLevel "Restricted" .
+ex:s2025800000_perf_sacred a heritage:Performer ; heritage:performerAccessLevel "Sacred" . # Added high level performer
+
+ex:s2025800000_inst_sacred a heritage:MusicalInstrument ;
+    heritage:requiredAccessLevel "Sacred" ;
+    heritage:restrictionEffectiveDate "2000-01-01"^^xsd:date .
+
+ex:s2025800000_inst_restricted a heritage:MusicalInstrument ;
+    heritage:requiredAccessLevel "Restricted" ;
+    heritage:restrictionEffectiveDate "2010-01-01"^^xsd:date .
+
+# -----------------------------------------------------------------------------
+# 1. FIXED TEMPORAL VIOLATIONS
+# Strategy: Either change the date to BEFORE restriction OR upgrade the performer.
+# -----------------------------------------------------------------------------
+
+# Case 1: Fixed by changing date to BEFORE restriction (1999 < 2000)
+ex:s2025800000_recording_violation1 a heritage:Recording ;
+    heritage:recordingDate "1999-12-31"^^xsd:date ;
+    heritage:hasPerformer ex:s2025800000_perf_public ;
+    heritage:relatedInstrument ex:s2025800000_inst_sacred .
+
+# Case 2: Fixed by changing date to BEFORE restriction (1999 < 2000)
+ex:s2025800000_recording_violation2 a heritage:Recording ;
+    heritage:recordingDate "1999-01-01"^^xsd:date ;
+    heritage:hasPerformer ex:s2025800000_perf_restricted ;
+    heritage:relatedInstrument ex:s2025800000_inst_sacred .
+
+# Case 3: Fixed by changing date to BEFORE restriction (2009 < 2010)
+ex:s2025800000_recording_violation3 a heritage:Recording ;
+    heritage:recordingDate "2009-06-01"^^xsd:date ;
+    heritage:hasPerformer ex:s2025800000_perf_public ;
+    heritage:relatedInstrument ex:s2025800000_inst_restricted .
+
+# Case 4: Fixed by assigning a SACRED performer (Authorized)
+ex:s2025800000_recording_violation4 a heritage:Recording ;
+    heritage:recordingDate "2020-08-15"^^xsd:date ;
+    heritage:hasPerformer ex:s2025800000_perf_sacred ; # Upgraded performer
+    heritage:relatedInstrument ex:s2025800000_inst_sacred .
+
+# Case 5: Fixed by changing date to BEFORE restriction
+ex:s2025800000_recording_violation5 a heritage:Recording ;
+    heritage:recordingDate "1999-12-30"^^xsd:date ;
+    heritage:hasPerformer ex:s2025800000_perf_public ;
+    heritage:relatedInstrument ex:s2025800000_inst_sacred .
+
+# -----------------------------------------------------------------------------
+# 2. FIXED MISSING PERFORMER INFORMATION
+# Strategy: Added heritage:hasPerformer property
+# -----------------------------------------------------------------------------
+
+ex:s2025800000_recording_missing1 a heritage:Recording ;
+    heritage:recordingDate "1990-01-01"^^xsd:date ;
+    heritage:relatedInstrument ex:s2025800000_inst_sacred ;
+    heritage:hasPerformer ex:s2025800000_perf_public . # Added
+
+ex:s2025800000_recording_missing2 a heritage:Recording ;
+    heritage:recordingDate "1995-01-01"^^xsd:date ;
+    heritage:hasPerformer ex:s2025800000_perf_public . # Added
+
+ex:s2025800000_recording_missing3 a heritage:Recording ;
+    rdfs:label "Unknown Recording" ;
+    heritage:hasPerformer ex:s2025800000_perf_public . # Added
+
+# -----------------------------------------------------------------------------
+# 3. FIXED DATE FORMATS
+# Strategy: Converted strings to valid xsd:date
+# -----------------------------------------------------------------------------
+
+ex:s2025800000_recording_bad_date1 a heritage:Recording ;
+    heritage:recordingDate "2024-05-01"^^xsd:date ; # Fixed format
+    heritage:hasPerformer ex:s2025800000_perf_public .
+
+ex:s2025800000_recording_bad_date2 a heritage:Recording ;
+    heritage:recordingDate "2024-01-01"^^xsd:date ; # Fixed "Yesterday" to date
+    heritage:hasPerformer ex:s2025800000_perf_public .

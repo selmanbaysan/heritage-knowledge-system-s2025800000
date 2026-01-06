@@ -1,0 +1,82 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.org/> .
+@prefix heritage: <http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#> .
+
+# -----------------------------------------------------------------------------
+# SETUP: Performers & Instruments (Context Data)
+# -----------------------------------------------------------------------------
+ex:s2025800000_perf_public a heritage:Performer ; heritage:performerAccessLevel "Public" .
+ex:s2025800000_perf_restricted a heritage:Performer ; heritage:performerAccessLevel "Restricted" .
+
+ex:s2025800000_inst_sacred a heritage:MusicalInstrument ;
+    heritage:requiredAccessLevel "Sacred" ;
+    heritage:restrictionEffectiveDate "2000-01-01"^^xsd:date .
+
+ex:s2025800000_inst_restricted a heritage:MusicalInstrument ;
+    heritage:requiredAccessLevel "Restricted" ;
+    heritage:restrictionEffectiveDate "2010-01-01"^^xsd:date .
+
+# -----------------------------------------------------------------------------
+# 1. TEMPORAL ACCESS VIOLATIONS (5 Cases)
+# Logic Violation: Date > 2000/2010 AND Performer Level is too low
+# -----------------------------------------------------------------------------
+
+# Case 1: Public Performer plays Sacred Instrument after restriction
+ex:s2025800000_recording_violation1 a heritage:Recording ;
+    heritage:recordingDate "2024-05-01"^^xsd:date ;
+    heritage:hasPerformer ex:s2025800000_perf_public ;
+    heritage:relatedInstrument ex:s2025800000_inst_sacred .
+
+# Case 2: Restricted Performer plays Sacred Instrument after restriction
+ex:s2025800000_recording_violation2 a heritage:Recording ;
+    heritage:recordingDate "2023-01-01"^^xsd:date ;
+    heritage:hasPerformer ex:s2025800000_perf_restricted ; # Restricted < Sacred -> Fail
+    heritage:relatedInstrument ex:s2025800000_inst_sacred .
+
+# Case 3: Public Performer plays Restricted Instrument after restriction
+ex:s2025800000_recording_violation3 a heritage:Recording ;
+    heritage:recordingDate "2015-06-01"^^xsd:date ;
+    heritage:hasPerformer ex:s2025800000_perf_public ; # Public < Restricted -> Fail
+    heritage:relatedInstrument ex:s2025800000_inst_restricted .
+
+# Case 4: Another Public Violation
+ex:s2025800000_recording_violation4 a heritage:Recording ;
+    heritage:recordingDate "2020-08-15"^^xsd:date ;
+    heritage:hasPerformer ex:s2025800000_perf_public ;
+    heritage:relatedInstrument ex:s2025800000_inst_sacred .
+
+# Case 5: Just after restriction date violation
+ex:s2025800000_recording_violation5 a heritage:Recording ;
+    heritage:recordingDate "2000-01-02"^^xsd:date ; # 1 day after restriction
+    heritage:hasPerformer ex:s2025800000_perf_public ;
+    heritage:relatedInstrument ex:s2025800000_inst_sacred .
+
+# -----------------------------------------------------------------------------
+# 2. MISSING PERFORMER INFORMATION (3 Cases)
+# Violation: Missing heritage:hasPerformer property
+# -----------------------------------------------------------------------------
+
+ex:s2025800000_recording_missing1 a heritage:Recording ;
+    heritage:recordingDate "1990-01-01"^^xsd:date ;
+    heritage:relatedInstrument ex:s2025800000_inst_sacred .
+
+ex:s2025800000_recording_missing2 a heritage:Recording ;
+    heritage:recordingDate "1995-01-01"^^xsd:date .
+
+ex:s2025800000_recording_missing3 a heritage:Recording ;
+    rdfs:label "Unknown Recording" .
+
+# -----------------------------------------------------------------------------
+# 3. INVALID DATE FORMATS (2 Cases)
+# Violation: Using string instead of xsd:date
+# -----------------------------------------------------------------------------
+
+ex:s2025800000_recording_bad_date1 a heritage:Recording ;
+    heritage:recordingDate "2024-May-01" ; # String, not date
+    heritage:hasPerformer ex:s2025800000_perf_public .
+
+ex:s2025800000_recording_bad_date2 a heritage:Recording ;
+    heritage:recordingDate "Yesterday" ; # Invalid format
+    heritage:hasPerformer ex:s2025800000_perf_public .
