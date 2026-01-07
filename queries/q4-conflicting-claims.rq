@@ -1,0 +1,20 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX ex: <http://example.org/>
+
+SELECT ?ritual ?cycle1 ?cycle2 ?source1 ?source2
+WHERE {
+    ?stmt1 a rdf:Statement ;
+           rdf:subject ?ritual ;
+           rdf:predicate ex:belongsTo ;
+           rdf:object ?cycle1 ;
+           ex:source ?source1 .
+
+    ?stmt2 a rdf:Statement ;
+           rdf:subject ?ritual ;
+           rdf:predicate ex:belongsTo ;
+           rdf:object ?cycle2 ;
+           ex:source ?source2 .
+
+    FILTER (?cycle1 != ?cycle2)
+    FILTER (str(?stmt1) < str(?stmt2))
+}

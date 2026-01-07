@@ -1,0 +1,13 @@
+PREFIX ex: <http://example.org/>
+
+SELECT ?source (COUNT(?graph) AS ?claimCount)
+WHERE {
+    GRAPH ?metaGraph {
+        ?graph ex:source ?source .
+    }
+    
+    FILTER EXISTS {
+        GRAPH ?graph { ?s ?p ?o }
+    }
+}
+GROUP BY ?source

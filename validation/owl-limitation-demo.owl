@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/owl-limitation-demo#"
+     xml:base="http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/owl-limitation-demo"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:heritage="http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#">
+    
+    <owl:Ontology rdf:about="http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/owl-limitation-demo">
+        <owl:imports rdf:resource="http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology"/>
+    </owl:Ontology>
+
+    <!-- 
+        Demonstrating the limitation of OWL in Temporal Constraints.
+        OWL 2 DL does not support comparing the values of two different properties 
+        (variable-to-variable comparison) on the same or related objects.
+    -->
+    <owl:Class rdf:about="#TemporalViolation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#Recording"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#Recording"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/selmanbaysan/ontologies/2025/11/heritage-ontology#recordingDate"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-01-08</xsd:minExclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+</rdf:RDF>

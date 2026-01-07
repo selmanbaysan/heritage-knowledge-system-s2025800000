@@ -19,6 +19,16 @@ QUERY_CONFIG = [
         "repo": "heritage-rdfstar",
         "query_file": "queries/q3-rdfstar.rq",
         "output_file": "queries/results/q3-result.json"
+    },
+    {
+        "repo": "heritage-reification",
+        "query_file": "queries/q4-conflicting-claims.rq",
+        "output_file": "queries/results/q4-result.json"
+    },
+    {
+        "repo": "heritage-named",
+        "query_file": "queries/q5-claims-by-source.rq",
+        "output_file": "queries/results/q5-result.json"
     }
 ]
 
