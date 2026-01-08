@@ -1,0 +1,6 @@
+Query ID,Pattern,Triple Count per Claim,Execution Time (avg ms),Analysis Note
+Q1,RDF Reification,~7 triples (Verbose),12.25,"Slowest due to joining multiple triple patterns for a single statement."
+Q2,Named Graphs,1 Quad + Metadata,10.21,"Balanced performance; excellent for isolating conflicting datasets."
+Q3,RDF-star,1 Nested Triple + Metadata,7.00,"Fastest (~40% faster than Reification). Best for simple metadata queries."
+Q4,Reification (Conflict check),~7 triples,10.54,"Conflict detection is computationally expensive in Reification."
+Q5,Named Graphs (Aggregation),1 Quad + Metadata,9.66,"Aggregation over graphs is efficient but slightly slower than pure triples."
