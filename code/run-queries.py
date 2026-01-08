@@ -1,5 +1,6 @@
 import os
 import csv
+import time 
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 GRAPHDB_URL = "http://localhost:7200/repositories"
@@ -35,6 +36,8 @@ QUERY_CONFIG = [
 def run_queries():
     os.makedirs("queries/results", exist_ok=True)
 
+    performance_results = []
+
     for config in QUERY_CONFIG:
         repo_url = f"{GRAPHDB_URL}/{config['repo']}"
         query_path = config['query_file']
@@ -50,13 +53,20 @@ def run_queries():
             sparql.setQuery(sparql_query)
             sparql.setReturnFormat(JSON)
 
-            results = sparql.query().convert()
+            timings = []
+            for _ in range(5):
+                start_time = time.perf_counter()
+                results = sparql.query().convert()
+                end_time = time.perf_counter()
+                timings.append((end_time - start_time) * 1000) # in milliseconds
+            
+            avg_time = sum(timings) / len(timings)
 
             import json
             with open(output_path, 'w') as f:
                 json.dump(results, f, indent=2)
             
-            print(f"  -> Success! Saved to {output_path}")
+            print(f"  -> Success! Saved to {output_path}, Average execution time: {avg_time:.2f} ms")
 
         except Exception as e:
             print(f"  -> Error: {e}")
