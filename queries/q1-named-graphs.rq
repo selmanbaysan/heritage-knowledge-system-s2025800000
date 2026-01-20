@@ -6,12 +6,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?subject ?predicate ?object ?confidence
 WHERE {
-    # The actual claim is stored in a named graph
     GRAPH ?claimGraph {
         ?subject ?predicate ?object .
     }
     
-    # Metadata about the claim (including confidence) is in a separate metadata graph
     GRAPH ?metadataGraph {
         ?claimGraph ex:confidence ?confidence .
     }

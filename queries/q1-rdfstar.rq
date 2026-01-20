@@ -6,7 +6,6 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?subject ?predicate ?object ?confidence
 WHERE {
-    # RDF-Star allows direct annotation of triples using << >> syntax
     << ?subject ?predicate ?object >> ex:confidence ?confidence .
     
     FILTER (?confidence > 0.8)
