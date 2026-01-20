@@ -1,0 +1,13 @@
+# Returns rituals where different sources claim different cycles
+
+PREFIX ex: <http://example.org/>
+
+SELECT ?ritual ?cycle1 ?cycle2 ?source1 ?source2
+WHERE {
+    << ?ritual ex:belongsTo ?cycle1 >> ex:source ?source1 .
+    
+    << ?ritual ex:belongsTo ?cycle2 >> ex:source ?source2 .
+    
+    FILTER (?cycle1 != ?cycle2)
+    FILTER (STR(?cycle1) < STR(?cycle2))
+}

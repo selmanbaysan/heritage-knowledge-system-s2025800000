@@ -1,0 +1,13 @@
+# Returns each source and the number of claims they have made
+
+PREFIX ex: <http://example.org/>
+
+SELECT ?source (COUNT(DISTINCT ?claimGraph) AS ?claimCount)
+WHERE {
+    GRAPH ?metadataGraph {
+        ?claimGraph ex:source ?source .
+    }
+    
+    FILTER (!CONTAINS(STR(?claimGraph), "metadata"))
+}
+GROUP BY ?source
