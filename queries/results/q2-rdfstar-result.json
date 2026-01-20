@@ -1,0 +1,103 @@
+{
+  "head": {
+    "vars": [
+      "ritual",
+      "cycle1",
+      "cycle2",
+      "source1",
+      "source2"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_harvest_feast"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "source1": {
+          "type": "uri",
+          "value": "http://example.org/TribeA"
+        },
+        "source2": {
+          "type": "uri",
+          "value": "http://example.org/TribeB"
+        }
+      },
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_rain_dance"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "source1": {
+          "type": "uri",
+          "value": "http://example.org/TribeA"
+        },
+        "source2": {
+          "type": "uri",
+          "value": "http://example.org/TribeB"
+        }
+      },
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_initiation"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "source1": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_person_arch1"
+        },
+        "source2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_elder_wisdom"
+        }
+      },
+      {
+        "ritual": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_item_sacred_mask"
+        },
+        "cycle1": {
+          "type": "uri",
+          "value": "http://example.org/Ancestors"
+        },
+        "cycle2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_loc_museum"
+        },
+        "source1": {
+          "type": "uri",
+          "value": "http://example.org/TribeA"
+        },
+        "source2": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_person_researcher_junior"
+        }
+      }
+    ]
+  }
+}

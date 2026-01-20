@@ -1,0 +1,109 @@
+{
+  "head": {
+    "vars": [
+      "subject",
+      "predicate",
+      "object",
+      "confidence"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {
+        "subject": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_harvest_feast"
+        },
+        "predicate": {
+          "type": "uri",
+          "value": "http://example.org/belongsTo"
+        },
+        "object": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "confidence": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+          "type": "literal",
+          "value": "0.9"
+        }
+      },
+      {
+        "subject": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_harvest_feast"
+        },
+        "predicate": {
+          "type": "uri",
+          "value": "http://example.org/belongsTo"
+        },
+        "object": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "confidence": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+          "type": "literal",
+          "value": "0.85"
+        }
+      },
+      {
+        "subject": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_rain_dance"
+        },
+        "predicate": {
+          "type": "uri",
+          "value": "http://example.org/belongsTo"
+        },
+        "object": {
+          "type": "uri",
+          "value": "http://example.org/LunarCycle"
+        },
+        "confidence": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+          "type": "literal",
+          "value": "0.95"
+        }
+      },
+      {
+        "subject": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_ritual_initiation"
+        },
+        "predicate": {
+          "type": "uri",
+          "value": "http://example.org/belongsTo"
+        },
+        "object": {
+          "type": "uri",
+          "value": "http://example.org/SolarCycle"
+        },
+        "confidence": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+          "type": "literal",
+          "value": "1.0"
+        }
+      },
+      {
+        "subject": {
+          "type": "uri",
+          "value": "http://example.org/s2025800000_item_sacred_mask"
+        },
+        "predicate": {
+          "type": "uri",
+          "value": "http://example.org/belongsTo"
+        },
+        "object": {
+          "type": "uri",
+          "value": "http://example.org/Ancestors"
+        },
+        "confidence": {
+          "datatype": "http://www.w3.org/2001/XMLSchema#decimal",
+          "type": "literal",
+          "value": "0.99"
+        }
+      }
+    ]
+  }
+}

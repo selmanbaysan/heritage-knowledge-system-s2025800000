@@ -9,27 +9,47 @@ QUERY_CONFIG = [
     {
         "repo": "heritage-reification",
         "query_file": "queries/q1-reification.rq",
-        "output_file": "queries/results/q1-result.json"
+        "output_file": "queries/results/q1-reification-result.json"
+    },
+    {
+        "repo": "heritage-named",
+        "query_file": "queries/q1-named-graphs.rq",
+        "output_file": "queries/results/q1-named-graphs-result.json"
+    },
+    {
+        "repo": "heritage-rdfstar",
+        "query_file": "queries/q1-rdfstar.rq",
+        "output_file": "queries/results/q1-rdfstar-result.json"
+    },
+    {
+        "repo": "heritage-reification",
+        "query_file": "queries/q2-reification.rq",
+        "output_file": "queries/results/q2-reification-result.json"
     },
     {
         "repo": "heritage-named",
         "query_file": "queries/q2-named-graphs.rq",
-        "output_file": "queries/results/q2-result.json"
+        "output_file": "queries/results/q2-named-graphs-result.json"
+    },
+    {
+        "repo": "heritage-rdfstar",
+        "query_file": "queries/q2-rdfstar.rq",
+        "output_file": "queries/results/q2-rdfstar-result.json"
+    },
+    {
+        "repo": "heritage-reification",
+        "query_file": "queries/q3-reification.rq",
+        "output_file": "queries/results/q3-reification-result.json"
+    },
+    {
+        "repo": "heritage-named",
+        "query_file": "queries/q3-named-graphs.rq",
+        "output_file": "queries/results/q3-named-graphs-result.json"
     },
     {
         "repo": "heritage-rdfstar",
         "query_file": "queries/q3-rdfstar.rq",
-        "output_file": "queries/results/q3-result.json"
-    },
-    {
-        "repo": "heritage-reification",
-        "query_file": "queries/q4-conflicting-claims.rq",
-        "output_file": "queries/results/q4-result.json"
-    },
-    {
-        "repo": "heritage-named",
-        "query_file": "queries/q5-claims-by-source.rq",
-        "output_file": "queries/results/q5-result.json"
+        "output_file": "queries/results/q3-rdfstar-result.json"
     }
 ]
 
